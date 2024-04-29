@@ -1,12 +1,14 @@
 import User from '../models/user.model.js';
 import bcrypts from 'bcryptjs';
+import { errorHandler } from '../utils/error.js';
 
-export const signup = async(req, res) => {
+//next to use the middleware
+export const signup = async(req, res, next) => {
   //console.log(req.body);
   const {username, email, password} = req.body;
 
   if(!username || !email || !password || username === '' || email === '' || password === ''){
-    return res.status(400).json('All fields are required');
+    next(errorHandler(400, 'All fields are required'));
   }
 
   const hashedPassword = bcrypts.hashSync(password, 10); //the 10 is the number of salt
@@ -21,8 +23,8 @@ export const signup = async(req, res) => {
     await newUser.save();
     res.json('Signup succefful');
   } catch (error) {
-    res.status(500).json(error.message);
-  }
+    next(error);
+}
 
 
 
