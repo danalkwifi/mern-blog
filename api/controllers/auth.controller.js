@@ -1,6 +1,6 @@
 import User from '../models/user.model.js';
 import bcrypts from 'bcryptjs';
-import { errorHandler } from '../utils/error.js';
+import { errorHandler } from "../utils/error.js";
 import jwt from 'jsonwebtoken';
 
 //next to use the middleware
