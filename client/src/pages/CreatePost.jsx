@@ -17,7 +17,7 @@ export default function CreatePost() {
 
     const [publishError, setPulishError] = useState(null);
 
-    //console.log(formData);
+    console.log(formData);
 
     const handleUploadImage = async () => {
         try{
